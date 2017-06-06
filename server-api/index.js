@@ -42,6 +42,7 @@ app.get('/post/:id', (req, res) => {
 
 
 app.post('/post', (req, res) => {
+  console.log('POST /post', req.body)
   var post = new Post(req.body);
   post.save(function(err){
     if(err) console.log(err);
