@@ -46,6 +46,7 @@ app.post('/post', (req, res) => {
   var post = new Post(req.body);
   post.save(function(err){
     if(err) console.log(err);
+    res.json({message: 'post saved!'})
   })
 } )
 
