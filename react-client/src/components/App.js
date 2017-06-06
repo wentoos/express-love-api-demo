@@ -5,8 +5,7 @@ import PostList from './PostList'
 import NewPost from './NewPost'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 
 class App extends Component {

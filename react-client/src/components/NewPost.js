@@ -1,5 +1,9 @@
 import React from 'react'
-import Form from './Form';
+import Form from './Form'
+import axios from 'axios'
+import {
+  withRouter
+} from 'react-router-dom'
 
 
 const styles = {
@@ -18,11 +22,21 @@ const styles = {
     }
   }
 
-const NewPost = () => (
-  <div style={styles.content}>
-    <div style={styles.title}>写文章</div>
-    <Form label='发布文章' />
-  </div>
-)
 
-export default NewPost
+const NewPost = (props) => {
+  const publishPost = (data) => {
+    axios.post(`http://express-api.haoqicat.com/post`, data)
+    .then(res => {
+      console.log(res.data.message)
+      props.history.push('/')
+    })
+  }
+  return (
+    <div style={styles.content}>
+      <div style={styles.title}>写文章</div>
+      <Form publishPost={publishPost} label='发布文章' />
+    </div>
+  )
+}
+
+export default withRouter(NewPost)
