@@ -18,6 +18,10 @@ db.once('open', function() {
 })
 
 
+app.get('/', (req, res) => {
+  res.send('API here')
+})
+
 app.get('/posts', (req, res) => {
   console.log('GET /posts........')
   Post.find().exec(function(err, posts) {
