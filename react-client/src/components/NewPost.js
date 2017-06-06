@@ -1,9 +1,6 @@
 import React from 'react'
 import Form from './Form'
 import axios from 'axios'
-import {
-  withRouter
-} from 'react-router-dom'
 
 
 const styles = {
@@ -39,4 +36,4 @@ const NewPost = (props) => {
   )
 }
 
-export default withRouter(NewPost)
+export default NewPost
