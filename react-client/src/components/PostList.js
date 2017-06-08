@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Settings from '../settings'
+import DeletePost from './DeletePost'
 
 const styles = {
    button: {
@@ -52,10 +53,20 @@ class PostList extends Component{
   constructor(){
     super()
     this.state = {
-      posts: []
+      posts: [],
+      id: ''
     }
   }
+  filterPosts(id) {
+    const posts = this.state.posts.filter((post) => post._id !== id )
 
+    this.setState({ posts: posts })
+  }
+
+  handleClick(value) {
+    this.setState({id: value});
+    this.refs.dialog.handleOpen();
+  }
   componentWillMount() {
     axios.get(`${Settings.host}/posts`).then(res => {
       this.setState({
@@ -70,7 +81,7 @@ class PostList extends Component{
             <div style={styles.actions}>
               <Link to={`/post/${post._id}`} style={styles.link}>查看</Link>
               <Link to={`/post/${post._id}/edit`} style={styles.link}>编辑</Link>
-              <Link to='' style={styles.link}>删除</Link>
+              <Link to='' style={styles.link} onClick={this.handleClick.bind(this, post._id)}>删除</Link>
             </div>
           </div>
         ))
@@ -79,6 +90,7 @@ class PostList extends Component{
       <div>
         <Link style={styles.button} to='/post/new'>写文章</Link>
         { postList }
+        <DeletePost id={this.state.id} removePosts={this.filterPosts.bind(this)} ref='dialog' />
       </div>
     )
   }
