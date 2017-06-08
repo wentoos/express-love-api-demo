@@ -19,15 +19,21 @@ class Form extends Component {
       <form onSubmit={this.handleSubmit.bind(this)}>
         <div>
           <label>分类</label>
-          <input  ref={(input) => this.category = input }/>
+          <input
+            defaultValue={this.props.post ? this.props.post.category : ''}
+            ref={(input) => this.category = input }/>
         </div>
         <div>
           <label>标题</label>
-          <input  ref={(input) => this.title = input }/>
+          <input
+            defaultValue={this.props.post ? this.props.post.title : ''}
+            ref={(input) => this.title = input }/>
         </div>
         <div>
           <label>内容</label>
-          <textarea ref={(input) => this.content = input } rows='20'  />
+          <textarea
+            defaultValue={this.props.post ? this.props.post.content : ''}
+            ref={(input) => this.content = input } rows='20'  />
         </div>
         <div className="actions">
           <button type='submit' key='2'>{this.props.label}</button>

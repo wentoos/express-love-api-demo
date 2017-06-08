@@ -3,6 +3,7 @@ import '../css/App.css';
 import Header from './Header'
 import PostList from './PostList'
 import NewPost from './NewPost'
+import EditPost from './EditPost'
 import {
   BrowserRouter as Router,
   Route
@@ -17,6 +18,7 @@ class App extends Component {
           <Header />
           <Route exact path='/' component={PostList}  />
           <Route path='/post/new' component={NewPost} />
+          <Route path='/post/:id/edit' component={EditPost} />
         </div>
       </Router>
     );
