@@ -7,7 +7,8 @@ import EditPost from './EditPost'
 import ShowPost from './ShowPost'
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom'
 
 class App extends Component {
@@ -17,10 +18,12 @@ class App extends Component {
       <Router>
         <div>
           <Header />
-          <Route exact path='/' component={PostList}  />
-          <Route path='/post/new' component={NewPost} />
-          <Route exact path='/post/:id' component={ShowPost} />
-          <Route path='/post/:id/edit' component={EditPost} />
+          <Switch>
+            <Route exact path='/' component={PostList}  />
+            <Route path='/post/new' component={NewPost} />
+            <Route path='/post/:id/edit' component={EditPost} />
+            <Route path='/post/:id' component={ShowPost} />
+          </Switch>
         </div>
       </Router>
     );
