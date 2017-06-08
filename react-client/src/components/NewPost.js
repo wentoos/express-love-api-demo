@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from './Form'
 import axios from 'axios'
+import Settings from '../settings'
 
 
 const styles = {
@@ -22,7 +23,7 @@ const styles = {
 
 const NewPost = (props) => {
   const publishPost = (data) => {
-    axios.post(`http://express-api.haoqicat.com/post`, data)
+    axios.post(`${Settings.host}/post`, data)
     .then(res => {
       console.log(res.data.message)
       props.history.push('/')

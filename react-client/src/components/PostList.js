@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Settings from '../settings'
 
 const styles = {
    button: {
@@ -56,7 +57,7 @@ class PostList extends Component{
   }
 
   componentWillMount() {
-    axios.get(`http://express-api.haoqicat.com/posts`).then(res => {
+    axios.get(`${Settings.host}/posts`).then(res => {
       this.setState({
         posts: res.data.posts
       })

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './Form';
+import Settings from '../settings'
+
 
 class EditPost extends Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class EditPost extends Component {
   }
 
   componentWillMount() {
-    axios.get(`http://express-api.haoqicat.com/post/${this.props.match.params.id}`).then(res => {
+    axios.get(`${Settings.host}/post/${this.props.match.params.id}`).then(res => {
       this.setState({
         post: res.data.post
       })
@@ -26,7 +28,7 @@ class EditPost extends Component {
   }
 
   publishPost(data) {
-    axios.put(`http://express-api.haoqicat.com/post/${this.props.match.params.id}`, data)
+    axios.put(`${Settings.host}/post/${this.props.match.params.id}`, data)
     .then(res => {
       console.log(res.data.message);
       this.props.history.push('/');
